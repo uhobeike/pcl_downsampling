@@ -134,6 +134,7 @@ add_executable(planar_segmentation src/planar_segmentation.cpp)
 add_executable(pcd_write src/pcd_write.cpp)
 add_executable(color_filter_rgb src/color_filter_rgb.cpp)
 add_executable(color_filter_hsv src/color_filter_hsv.cpp)
+add_executable(model_plane_cut src/model_plane_cut.cpp) 
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -160,7 +161,9 @@ target_link_libraries(color_filter_hsv
   ${catkin_LIBRARIES}
 )
 
-
+target_link_libraries(model_plane_cut
+  ${catkin_LIBRARIES}
+)
 #############
 ## Install ##
 #############

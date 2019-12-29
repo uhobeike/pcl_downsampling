@@ -1,5 +1,4 @@
 #include <ros/ros.h>
-// PCL specific includes
 #include <sensor_msgs/PointCloud2.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/point_cloud.h>
@@ -12,9 +11,7 @@
 
 ros::Publisher pub;
 
-void
-cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
-{
+void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input){
   // Define PointCloud2 data
   pcl::PointCloud<pcl::PointXYZRGBA> in_cloud, out_cloud;
   // Convert the sensor_msgs/PointCloud2 data to pcl/PointCloud
@@ -77,9 +74,7 @@ cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
   }
 }
 
-int
-main (int argc, char** argv)
-{
+int main (int argc, char** argv){
   // Initialize ROS
   ros::init (argc, argv, "color_filter_hsv");
   ros::NodeHandle nh;
