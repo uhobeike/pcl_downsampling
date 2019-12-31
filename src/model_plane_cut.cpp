@@ -30,7 +30,7 @@ seg.setModelType (pcl::SACMODEL_PLANE);//検出するモデルのタイプを指
 seg.setMethodType (pcl::SAC_RANSAC);//検出に使用する方法を指定
 double DistanceThreshold_param;
 ros::param::get("DistanceThreshold_param", DistanceThreshold_param);
-seg.setDistanceThreshold (0.1);//RANSACの最小二乗法の許容誤差範囲
+seg.setDistanceThreshold (0.01);//RANSACの最小二乗法の許容誤差範囲
 seg.setMaxIterations(50);
 seg.setProbability(0.95);
 
@@ -50,7 +50,7 @@ int main (int argc, char** argv){
   ros::init (argc, argv, "model_plane_cut");
   ros::NodeHandle nh;
   // Set ROS param
-  ros::param::set("DistanceThreshold_param", 0.1);
+  ros::param::set("DistanceThreshold_param", 0.01);
 
   // Create a ROS subscriber for the input point cloud
   ros::Subscriber sub = nh.subscribe ("input", 1, cloud_cb);
