@@ -1,14 +1,23 @@
 #include <ros/ros.h>
-// PCL specific includes
+#include <vector>
 #include <sensor_msgs/PointCloud2.h>
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_ros/transform_broadcaster.h>
+#include <geometry_msgs/TransformStamped.h>
+// PCL specific includes
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
-#include <pcl/sample_consensus/model_types.h>
+
 #include <pcl/sample_consensus/method_types.h>
-#include <pcl/segmentation/sac_segmentation.h> 
+#include <pcl/sample_consensus/model_types.h>
+#include <pcl/segmentation/sac_segmentation.h>
+
 #include <pcl/filters/extract_indices.h>
-#include <pcl_ros/point_cloud.h>
+#include <pcl/filters/voxel_grid.h>
+#include <pcl/features/normal_3d.h>
+#include <pcl/kdtree/kdtree.h>
+#include <pcl/segmentation/extract_clusters.h>
 
 ros::Publisher pub;
 
@@ -42,7 +51,12 @@ extract.setIndices(inliers);
 extract.setNegative(true);//trueの場合出力は検出された平面以外のデータ falseの場合は平面のデータ
 extract.filter(cloud_output);
 
-pub.publish(cloud_output);
+sensor_msgs::PointCloud2 output;
+pcl::toROSMsg(cloud_output, output);
+
+pub.publish(output);
+
+
 }
 
 int main (int argc, char** argv){
@@ -56,7 +70,7 @@ int main (int argc, char** argv){
   ros::Subscriber sub = nh.subscribe ("input", 1, cloud_cb);
 
   // Create a ROS publisher for the model coefficients
-  pub = nh.advertise<pcl::PointCloud<pcl::PointXYZRGB> > ("model_plane_cut", 1);
+  pub = nh.advertise<sensor_msgs::PointCloud2>("model_plane_cut", 1);
   // Spin
   ros::spin ();
 }

@@ -10,6 +10,7 @@
 #include <pcl/segmentation/sac_segmentation.h> 
 #include <pcl/filters/extract_indices.h>
 #include <pcl_ros/point_cloud.h>
+#include <pcl_ros/transforms.h>
 
 #include <tf/transform_listener.h>
 
@@ -18,34 +19,50 @@ class PointCloudTransform{
           ros::NodeHandle nh;
 		      ros::NodeHandle nhPrivate;
 		      ros::Subscriber sub;
-           ros::Publisher pub;
+          ros::Publisher pub;
+          tf::TransformListener tf_listener_;
+          pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_tranformed_;
+          pcl::PointCloud<pcl::PointXYZRGB> input_cloud;
 		      sensor_msgs::PointCloud pc_;
-		      std::string target;
+		      std::string target_frame_;
   public:
           PointCloudTransform();
           void Callback(const sensor_msgs::PointCloud2ConstPtr& msg);
+        
 };
 PointCloudTransform::PointCloudTransform()
-    : nhPrivate("~")
+  :nh(),nhPrivate("~")
 {
 	sub = nh.subscribe("input", 1, &PointCloudTransform::Callback, this);
 	pub = nh.advertise<pcl::PointCloud<pcl::PointXYZRGB>> ("model_plane_cut", 1);
-	nhPrivate.getParam("target", target);
+  nhPrivate.param("target_frame", target_frame_, std::string(""));
 };
 void PointCloudTransform::Callback(const sensor_msgs::PointCloud2ConstPtr &input)
 {
-
-  /*
+  pcl::fromROSMsg (*input, input_cloud);
+  //pcl::PointCloud<pcl::PointXYZ>::ConstPtr cloud_src = input;
+  std::cout << "uho" << std::endl;
 	try{
-		tflistener.waitForTransform(target, msg->header.frame_id, msg->header.stamp, ros::Duration(1.0));
-		tflistener.transformPointCloud(target, msg->header.stamp, pc_in, msg->header.frame_id, pc_trans);
-		sensor_msgs::convertPointCloudToPointCloud2(pc_trans, pc2_out);
-		pub.publish(pc2_out);
+    std::string frame_id = input->header.frame_id;
+    //pcl::PointCloud2::ConstPtr cloud_src = input;
+    std::cout << "uho" << std::endl;
+    if (target_frame_.empty() == false)
+    {
+      frame_id = target_frame_;
+      if (pcl_ros::transformPointCloud(target_frame_, input_cloud ,*cloud_tranformed_, tf_listener_) == false)
+      {
+        ROS_ERROR("Failed pcl_ros::transformPointCloud. target_frame = %s",
+                  target_frame_.c_str());
+        return;
+      }
+      pub.publish(cloud_tranformed_);
+      std::cout << "uho" << std::endl;
+    }
 	}
 	catch(tf::TransformException ex){
 		ROS_ERROR("%s",ex.what());
 	}
-  */
+  /*
   pcl::PointCloud<pcl::PointXYZRGB> cloud;
   pcl::fromROSMsg (*input,cloud);
 
@@ -72,8 +89,8 @@ void PointCloudTransform::Callback(const sensor_msgs::PointCloud2ConstPtr &input
   extract.setIndices(inliers);
   extract.setNegative(true);//trueの場合出力は検出された平面以外のデータ falseの場合は平面のデータ
   extract.filter(cloud_output);
-
-  pub.publish(cloud_output);
+  */
+  //pub.publish(input_cloud);
 }
 
 int main(int argc, char** argv){
