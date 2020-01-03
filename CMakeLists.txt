@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(pcl_ros_processing)
 
+
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -9,8 +11,9 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_ros
   roscpp
   sensor_msgs
+  tf
 )
-
+find_package(Boost REQUIRED COMPONENTS system)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -129,39 +132,27 @@ include_directories(
 # add_dependencies(pcl-ros-processing ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(downsampling src/downsampling.cpp)
-add_executable(planar_segmentation src/planar_segmentation.cpp)
-add_executable(pcd_write src/pcd_write.cpp)
-add_executable(color_filter_rgb src/color_filter_rgb.cpp)
-add_executable(color_filter_hsv src/color_filter_hsv.cpp)
 add_executable(model_plane_cut src/model_plane_cut.cpp) 
+add_executable(model_plane_cut_class src/model_plane_cut_class.cpp) 
+add_executable(model_plane_cut_test src/model_plane_cut_test.cpp) 
+
+
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(pcl-ros-processing_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(downsampling
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(planar_segmentation
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(pcd_write
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(color_filter_rgb
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(color_filter_hsv
-  ${catkin_LIBRARIES}
-)
 
 target_link_libraries(model_plane_cut
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(model_plane_cut_class
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(model_plane_cut_test
   ${catkin_LIBRARIES}
 )
 #############

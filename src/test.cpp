@@ -202,7 +202,7 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
     const static std::string EXAMPLE_FRAME_ID = "example_frame";
 
-    switch(ExampleNumber){
+    switch(2){
     case 0:
         plane(cloud_msg, EXAMPLE_FRAME_ID);
         break;
@@ -228,7 +228,7 @@ int main (int argc, char** argv)
     nh.param<int>("number", ExampleNumber, 0);
 
     // Create a ROS subscriber for the input point cloud
-    ros::Subscriber sub = nh.subscribe("/camera/depth_registered/points", 1, cloud_cb);
+    ros::Subscriber sub = nh.subscribe("input", 1, cloud_cb);
 
     // Create a ROS publisher for the output point cloud
     PubOutput = nh.advertise<sensor_msgs::PointCloud2> ("/output", 1);
