@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(pcl_ros_processing)
+project(PCL_study)
 
 
 
@@ -105,7 +105,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES pcl_ros_processing
+#  LIBRARIES PCL_study
 #  CATKIN_DEPENDS pcl_conversions pcl_ros roscpp sensor_msgs
 #  DEPENDS system_lib
 )
