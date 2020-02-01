@@ -58,7 +58,7 @@ rvizで表示されている点群データについて
 
 物体検知完了時の点群データについて
 ![crane_x7_e](https://github.com/ShioriSugiyama/crane_x7_ros/blob/image/image/11345882994648.gif "crane_x7_e")
-- 制御信号ケーブルを接続した状態で次のコマンドを実行します。
+
 
 
 
