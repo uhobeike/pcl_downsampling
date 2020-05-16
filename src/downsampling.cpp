@@ -11,8 +11,10 @@
 #include <pcl_ros/point_cloud.h>
 int main (int argc, char** argv)
 { 
+  //入力ファイルナンバーを適宜追加してください(ex: {1,2,3,4 .......})
   int roop[] = {1,2};
   
+  //homeディレクトリーの取得
   std::string HOME = getenv("HOME");
   
   for(int i : roop)
@@ -20,7 +22,7 @@ int main (int argc, char** argv)
 	  //点群用変数
 	  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_re (new pcl::PointCloud<pcl::PointXYZ>);
 
-	  //ファイルのインプット
+	  //ファイルの入力
 	  std::string pcd_path_input = HOME + "/Downloads/output_" + std::to_string(i) + ".bag_points.pcd"; 
 	  pcl::io::loadPCDFile (pcd_path_input, *cloud_re);
           
