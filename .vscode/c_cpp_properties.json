@@ -1,0 +1,44 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/ikebe/catro_ws/install_isolated/include/**",
+        "/home/ikebe/turtle/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/ikebe/turtle/src/navigation/amcl/include/**",
+        "/home/ikebe/turtle/src/navigation/base_local_planner/include/**",
+        "/home/ikebe/turtle/src/navigation/carrot_planner/include/**",
+        "/home/ikebe/turtle/src/navigation/clear_costmap_recovery/include/**",
+        "/home/ikebe/turtle/src/navigation/costmap_2d/include/**",
+        "/home/ikebe/turtle/src/navigation/dwa_local_planner/include/**",
+        "/home/ikebe/turtle/src/navigation/global_planner/include/**",
+        "/home/ikebe/turtle/src/turtlebot3_simulations/goal_send/include/**",
+        "/home/ikebe/turtle/src/navigation/map_server/include/**",
+        "/home/ikebe/turtle/src/navigation/move_base/include/**",
+        "/home/ikebe/turtle/src/navigation/move_slow_and_clear/include/**",
+        "/home/ikebe/turtle/src/navigation/nav_core/include/**",
+        "/home/ikebe/turtle/src/navigation/navfn/include/**",
+        "/home/ikebe/turtle/src/openslam_gmapping/include/**",
+        "/home/ikebe/turtle/src/navigation/rotate_recovery/include/**",
+        "/home/ikebe/turtle/src/geometry2/tf2/include/**",
+        "/home/ikebe/turtle/src/geometry2/tf2_bullet/include/**",
+        "/home/ikebe/turtle/src/geometry2/tf2_eigen/include/**",
+        "/home/ikebe/turtle/src/geometry2/tf2_geometry_msgs/include/**",
+        "/home/ikebe/turtle/src/geometry2/tf2_kdl/include/**",
+        "/home/ikebe/turtle/src/geometry2/tf2_msgs/include/**",
+        "/home/ikebe/turtle/src/geometry2/tf2_ros/include/**",
+        "/home/ikebe/turtle/src/geometry2/tf2_sensor_msgs/include/**",
+        "/home/ikebe/turtle/src/turtlebot3_simulations/turtlebot3_fake/include/**",
+        "/home/ikebe/turtle/src/turtlebot3_simulations/turtlebot3_gazebo/include/**",
+        "/home/ikebe/turtle/src/turtlebot3/turtlebot3_slam/include/**",
+        "/home/ikebe/turtle/src/navigation/voxel_grid/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ]
+}

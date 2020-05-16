@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>PCL_study</name>
+  <name>pcl_downsampling_ws</name>
   <version>0.0.0</version>
-  <description>The PCL_study package</description>
+  <description>The pcl_downsampling package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
